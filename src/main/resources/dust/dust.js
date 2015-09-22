@@ -1,11 +1,14 @@
-function render(template, model) {
-    var key = "_key"; // temp key
-    var compiled = dust.compile(template, key); // compile
-    dust.loadSource(compiled); // load
+var templates = {};
+
+function render(template, model, url) {
+    if (templates[url] === undefined) {
+        var compiled = dust.compile(template, url); // compile
+        dust.loadSource(compiled); // load
+    }
 
     // render
     var res;
-    dust.render(key, model, function (err, data) {
+    dust.render(url, model, function (err, data) {
         if (err) {
             throw new Error(err);
         } else {

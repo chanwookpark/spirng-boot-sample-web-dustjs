@@ -23,6 +23,7 @@ public class ScriptTemplateConfiguration extends WebMvcConfigurerAdapter {
         configurer.setEngineName("nashorn");
         configurer.setScripts("dust/dust.js", "/META-INF/resources/webjars/dustjs-linkedin/2.6.1/dust-full.js");
         configurer.setRenderFunction("render");
+        configurer.setSharedEngine(false);
         return configurer;
     }
 }
