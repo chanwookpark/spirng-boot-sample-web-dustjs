@@ -14,7 +14,7 @@ public class ScriptTemplateConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.scriptTemplate();
+        registry.scriptTemplate().prefix("/dust/").suffix(".html");
     }
 
     @Bean
