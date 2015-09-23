@@ -1,4 +1,4 @@
-package spring.script.template;
+package io.spring.boot.sample.dustjs;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

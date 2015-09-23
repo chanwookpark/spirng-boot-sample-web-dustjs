@@ -1,4 +1,4 @@
-package spring.script.template;
+package io.spring.boot.sample.dustjs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

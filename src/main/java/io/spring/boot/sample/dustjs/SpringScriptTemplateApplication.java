@@ -1,4 +1,4 @@
-package spring.script.template;
+package io.spring.boot.sample.dustjs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

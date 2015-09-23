@@ -1,4 +1,4 @@
-package spring.script.template;
+package io.spring.boot.sample.dustjs;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
