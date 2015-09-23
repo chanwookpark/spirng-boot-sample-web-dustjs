@@ -1,12 +1,12 @@
-package io.spring.boot.sample.dustjs;
+package io.spring.boot.sample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringScriptTemplateApplication {
+public class ScriptTemplateApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringScriptTemplateApplication.class, args);
+        SpringApplication.run(ScriptTemplateApplication.class, args);
     }
 }

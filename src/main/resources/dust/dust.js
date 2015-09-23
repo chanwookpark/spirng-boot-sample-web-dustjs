@@ -1,7 +1,7 @@
 var templates = {};
+var partial = {}; // for check loaded
 
 function render(template, model, url) {
-
     if (templates[url] === undefined) {
         var compiled = dust.compile(template, url); // compile
         dust.loadSource(compiled); // load
@@ -17,4 +17,11 @@ function render(template, model, url) {
         }
     });
     return res;
+}
+
+function loadPartial(template, url) {
+
+    var compiled = dust.compile(template, url); // compile
+    dust.loadSource(compiled); // load
+
 }

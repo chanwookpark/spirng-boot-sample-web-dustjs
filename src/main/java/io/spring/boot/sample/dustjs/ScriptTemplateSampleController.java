@@ -16,4 +16,9 @@ public class ScriptTemplateSampleController {
         return "hello";
     }
 
+    @RequestMapping("/dust/partial")
+    public String partial() {
+        return "template3";
+    }
+
 }
