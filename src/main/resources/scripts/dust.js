@@ -8,7 +8,7 @@ function render(template, model, url) {
 
     // render. dust is basically asynchronously then this code has potentially issue with synchronous..
     var res;
-    dust.render(url, model, function (err, data) {
+    dust.render(url, /* needs convert to real JS JSON object?*/model, function (err, data) {
         if (err) {
             throw new Error(err);
         } else {
