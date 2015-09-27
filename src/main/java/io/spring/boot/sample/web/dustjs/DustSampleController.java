@@ -1,4 +1,4 @@
-package io.spring.boot.sample.dustjs;
+package io.spring.boot.sample.web.dustjs;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author chanwook
  */
 @Controller
-public class ScriptTemplateSampleController {
+public class DustSampleController {
 
     @RequestMapping("/dust/hello")
     public String hello(ModelMap model) {

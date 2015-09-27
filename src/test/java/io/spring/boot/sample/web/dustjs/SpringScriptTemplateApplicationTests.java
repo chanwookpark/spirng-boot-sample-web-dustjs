@@ -1,6 +1,6 @@
-package io.spring.boot.sample.dustjs;
+package io.spring.boot.sample.web.dustjs;
 
-import io.spring.boot.sample.ScriptTemplateApplication;
+import io.spring.boot.sample.web.ScriptTemplateApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.web.WebAppConfiguration;

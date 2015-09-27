@@ -1,4 +1,4 @@
-package io.spring.boot.sample.scope;
+package io.spring.boot.sample.web.scope;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
