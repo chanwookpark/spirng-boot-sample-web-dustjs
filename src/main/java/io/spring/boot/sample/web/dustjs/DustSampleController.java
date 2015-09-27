@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DustSampleController {
 
-    @RequestMapping("/dust/hello")
+    @RequestMapping("/hello")
     public String hello(ModelMap model) {
         model.put("title", "Greeting!!");
         return "hello";
     }
 
-    @RequestMapping("/dust/partial")
+    @RequestMapping("/partial")
     public String partial() {
         return "template3";
     }

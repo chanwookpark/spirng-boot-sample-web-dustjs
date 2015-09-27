@@ -23,7 +23,7 @@ public class ScriptTemplateConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.scriptTemplate().prefix("/dust/").suffix(".html");
+        registry.scriptTemplate().prefix("/templates/").suffix(".html");
     }
 
     @Bean
@@ -36,27 +36,27 @@ public class ScriptTemplateConfiguration extends WebMvcConfigurerAdapter {
         configurer.setEngine(engine);
 
         // TODO we needs refactoring if add STV.setScripts("folder")
-        // configurer.setScripts("/scripts/dust.js", "/META-INF/resources/webjars/dustjs-linkedin/2.6.1/dust-full.js");
-        List<String> scripts = new ArrayList<>();
-        scripts.add("/scripts/dust.js");
-        scripts.add("/META-INF/resources/webjars/dustjs-linkedin/2.6.1/dust-full.js");
-        final ClassPathResource dir = new ClassPathResource("/dust/compiled");
-        for (File f : dir.getFile().listFiles()) {
-            scripts.add("/dust/compiled/" + f.getName());
-        }
-        configurer.setScripts(scripts.toArray(new String[scripts.size()]));
+        addScripts(configurer);
 
         return configurer;
     }
 
+    private void addScripts(ScriptTemplateConfigurer configurer) throws IOException {
+        // configurer.setScripts("/dust.js", "/META-INF/resources/webjars/dustjs-linkedin/2.6.1/dust-full.js");
+        List<String> scripts = new ArrayList<>();
+        scripts.add("/dust.js");
+        scripts.add("/META-INF/resources/webjars/dustjs-linkedin/2.6.1/dust-full.js");
+        final ClassPathResource dir = new ClassPathResource("/templates/compiled");
+        for (File f : dir.getFile().listFiles()) {
+            scripts.add("/templates/compiled/" + f.getName());
+        }
+        configurer.setScripts(scripts.toArray(new String[scripts.size()]));
+    }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        if (!registry.hasMappingForPattern("/dust/**")) {
-            registry.addResourceHandler("/dust/**").addResourceLocations("classpath:/dust/");
-        }
-
-        if (!registry.hasMappingForPattern("/scripts/**")) {
-            registry.addResourceHandler("/scripts/**").addResourceLocations("classpath:/scripts/");
+        if (!registry.hasMappingForPattern("/templates/**")) {
+            registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/templates/");
         }
     }
 }

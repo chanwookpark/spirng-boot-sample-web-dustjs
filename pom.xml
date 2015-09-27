@@ -74,8 +74,8 @@
                 <artifactId>dustjs-maven-plugin</artifactId>
                 <version>1.0-SNAPSHOT</version>
                 <configuration>
-                    <sourceDirectory>src/main/resources/dust/partial</sourceDirectory>
-                    <targetDirectory>target/classes/dust/compiled</targetDirectory>
+                    <sourceDirectory>src/main/resources/templates/partial</sourceDirectory>
+                    <targetDirectory>target/classes/templates/compiled</targetDirectory>
                     <dustjsFile>META-INF/resources/webjars/dustjs-linkedin/2.6.1/dust-full.js</dustjsFile>
                 </configuration>
                 <executions>

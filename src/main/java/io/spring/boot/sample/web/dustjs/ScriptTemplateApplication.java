@@ -1,4 +1,4 @@
-package io.spring.boot.sample.web;
+package io.spring.boot.sample.web.dustjs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
