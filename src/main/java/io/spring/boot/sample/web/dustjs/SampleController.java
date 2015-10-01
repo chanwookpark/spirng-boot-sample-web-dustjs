@@ -19,7 +19,7 @@ import static java.time.LocalDateTime.now;
  * @author chanwook
  */
 @Controller
-public class DustSampleController {
+public class SampleController {
 
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
 

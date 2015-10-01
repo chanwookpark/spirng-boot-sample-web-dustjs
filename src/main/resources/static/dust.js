@@ -1,13 +1,21 @@
 var templates = {};
 
+/**
+ * Rendering template...
+ *
+ * @param template HTML text
+ * @param model Spring's ModelMap object
+ * @param url URL for Template HTML file
+ * @returns {String}
+ */
 function render(template, model, url) {
-    // compile template if needs
+    // Compile template if needs
     if (templates[url] === undefined) {
         var compiled = dust.compile(template, url); // compile
         dust.loadSource(compiled); // load
     }
 
-    // to JSON object
+    // Java object to JavaScript object
     var jsonObject = convertToJsonObject(model);
 
     console.log(
@@ -17,6 +25,7 @@ function render(template, model, url) {
         + model + "\n"
         + "=============================================================");
 
+    // Render
     // Dust is basically asynchronously then this code has potentially issue with synchronous..
     var res;
     dust.render(url, jsonObject, function (err, data) {
