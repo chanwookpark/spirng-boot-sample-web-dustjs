@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Spring ScriptTemplate with Dust.js</title>
+</head>
+<body>
+<h1>{user.name} TODOs</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <td>No</td>
+        <td>Title</td>
+        <td>Status</td>
+        <td>Create Date</td>
+        <td>Due Date</td>
+    </tr>
+    </thead>
+    {#todos}
+    <tr>
+        <td>{id}</td>
+        <td>{title}</td>
+        <td>{status}</td>
+        <td>{created}</td>
+        <td>{dueDate}</td>
+    </tr>
+    {/todos}
+</table>
+
+</body>
+</html>
