@@ -35,7 +35,6 @@ public class ScriptTemplateConfiguration extends WebMvcConfigurerAdapter {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         configurer.setEngine(engine);
 
-        // TODO we needs refactoring if add STV.setScripts("folder")
         addScripts(configurer);
 
         return configurer;
@@ -46,6 +45,9 @@ public class ScriptTemplateConfiguration extends WebMvcConfigurerAdapter {
         List<String> scripts = new ArrayList<>();
         scripts.add("/dust.js");
         scripts.add("/META-INF/resources/webjars/dustjs-linkedin/2.6.1/dust-full.js");
+        scripts.add("/polyfill.js");
+
+        // TODO we needs refactoring if add STV.setScripts("folder")
         final ClassPathResource dir = new ClassPathResource("/templates/compiled");
         for (File f : dir.getFile().listFiles()) {
             scripts.add("/templates/compiled/" + f.getName());

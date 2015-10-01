@@ -6,7 +6,14 @@ function render(template, model, url) {
         dust.loadSource(compiled); // load
     }
 
-    // render. dust is basically asynchronously then this code has potentially issue with synchronous..
+    if (console != undefined) {
+        console.log(url + " template is ready to rendering!\n" +
+            "=============================================================\n"
+            + template
+            + "\n=============================================================");
+    }
+
+    // Dust is basically asynchronously then this code has potentially issue with synchronous..
     var res;
     dust.render(url, /* needs convert to real JS JSON object?*/model, function (err, data) {
         if (err) {
