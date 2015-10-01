@@ -41,7 +41,6 @@ public class ScriptTemplateConfiguration extends WebMvcConfigurerAdapter {
     }
 
     private void addScripts(ScriptTemplateConfigurer configurer) throws IOException {
-        // configurer.setScripts("/dust.js", "/META-INF/resources/webjars/dustjs-linkedin/2.6.1/dust-full.js");
         List<String> scripts = new ArrayList<>();
         scripts.add("/static/dust.js");
         scripts.add("/static/polyfill.js");

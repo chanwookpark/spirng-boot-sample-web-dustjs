@@ -40,16 +40,16 @@ public class SampleController {
     public String todos(@PathVariable String userName, ModelMap model) {
         final User user = new User(userName);
 
-        final List<Todo> todoList = new ArrayList<>();
+        final List<Todo> todos = new ArrayList<>();
         final String now = dateFormat(now());
 
-        todoList.add(new Todo("1", "Eat breakfast", TodoStatus.CLOSE, now, dueDate(7, 0)));
-        todoList.add(new Todo("2", "Eat lunch", TodoStatus.OPEN, now, dueDate(12, 0)));
-        todoList.add(new Todo("3", "Eat supper", TodoStatus.OPEN, now, dueDate(18, 0)));
-        todoList.add(new Todo("4", "Study chinese", TodoStatus.PENDING, now, dueDate(20, 0)));
+        todos.add(new Todo("1", "Eat breakfast", TodoStatus.CLOSE, now, dueDate(7, 0)));
+        todos.add(new Todo("2", "Eat lunch", TodoStatus.OPEN, now, dueDate(12, 0)));
+        todos.add(new Todo("3", "Eat supper", TodoStatus.OPEN, now, dueDate(18, 0)));
+        todos.add(new Todo("4", "Study chinese", TodoStatus.PENDING, now, dueDate(20, 0)));
 
         model.addAttribute("user", user);
-        model.addAttribute("todoList", todoList);
+        model.addAttribute("todos", todos);
 
         return "todo";
     }
