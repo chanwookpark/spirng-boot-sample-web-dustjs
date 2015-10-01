@@ -5,6 +5,7 @@ import io.spring.boot.sample.web.dustjs.model.TodoStatus;
 import io.spring.boot.sample.web.dustjs.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,8 @@ public class DustSampleController {
 
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
 
+
+
     @RequestMapping("/hello")
     public String hello(ModelMap model) {
         model.put("title", "Greeting!!");
@@ -33,31 +36,32 @@ public class DustSampleController {
         return "master";
     }
 
-    @RequestMapping("/todos")
-    public String jsonModel(ModelMap model) {
-        final User user = new User("chanwook");
+    @RequestMapping("/{userName}/todos")
+    public String todos(@PathVariable String userName, ModelMap model) {
+        final User user = new User(userName);
 
-        final List<Todo> todos = new ArrayList<>();
+        final List<Todo> todoList = new ArrayList<>();
+        final String now = dateFormat(now());
 
-        todos.add(new Todo("1", "Eat 아침", TodoStatus.CLOSE, dateFormat(now()), dateFormat(dueDate(7, 0))));
-        todos.add(new Todo("2", "Eat 점심", TodoStatus.OPEN, dateFormat(now()), dateFormat(dueDate(12, 0))));
-        todos.add(new Todo("3", "Eat 저녁", TodoStatus.OPEN, dateFormat(now()), dateFormat(dueDate(18, 0))));
-        todos.add(new Todo("4", "Study chinese", TodoStatus.PENDING, dateFormat(now()), dateFormat(dueDate(20, 0))));
+        todoList.add(new Todo("1", "Eat breakfast", TodoStatus.CLOSE, now, dueDate(7, 0)));
+        todoList.add(new Todo("2", "Eat lunch", TodoStatus.OPEN, now, dueDate(12, 0)));
+        todoList.add(new Todo("3", "Eat supper", TodoStatus.OPEN, now, dueDate(18, 0)));
+        todoList.add(new Todo("4", "Study chinese", TodoStatus.PENDING, now, dueDate(20, 0)));
 
         model.addAttribute("user", user);
-        model.addAttribute("todos", todos);
+        model.addAttribute("todoList", todoList);
 
         return "todo";
     }
 
-    private String dateFormat(LocalDateTime dateTime) {
-        return dateTime.format(formatter);
-    }
-
-    private LocalDateTime dueDate(int hour, int min) {
+    private String dueDate(int hour, int min) {
         LocalDateTime due = now();
         due = due.withHour(hour).withMinute(min);
-        return due;
+        return dateFormat(due);
+    }
+
+    private String dateFormat(LocalDateTime dateTime) {
+        return dateTime.format(formatter);
     }
 
 }
