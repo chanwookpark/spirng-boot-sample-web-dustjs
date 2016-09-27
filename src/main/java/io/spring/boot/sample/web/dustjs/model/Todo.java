@@ -22,10 +22,7 @@ public class Todo implements Serializable {
 
     private TodoStatus status;
 
-    // FIXME LocalDateTime with nashorn is throw exception... (maybe jdk bug?? 'not found apply() in <eval>')
-    //    private LocalDateTime created;
     private String created;
 
-    //    private LocalDateTime dueDate;
     private String dueDate;
 }

@@ -44,7 +44,7 @@ public class ScriptTemplateConfiguration extends WebMvcConfigurerAdapter {
         List<String> scripts = new ArrayList<>();
         scripts.add("/static/dust.js");
         scripts.add("/static/polyfill.js");
-        scripts.add("/META-INF/resources/webjars/dustjs-linkedin/2.6.1/dust-full.js");
+        scripts.add("/META-INF/resources/webjars/dustjs-linkedin/2.7.2/dust-full.js");
 
         // TODO we needs refactoring if add STV.setScripts("folder")
         final ClassPathResource dir = new ClassPathResource("/static/templates/compiled");

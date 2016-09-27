@@ -48,8 +48,8 @@ public class SampleController {
         todos.add(new Todo("3", "Eat supper", TodoStatus.OPEN, now, dueDate(18, 0)));
         todos.add(new Todo("4", "Study chinese", TodoStatus.PENDING, now, dueDate(20, 0)));
 
-        model.addAttribute("user", user);
-        model.addAttribute("todos", todos);
+        model.put("user", user);
+        model.put("todos", todos);
 
         return "todo";
     }

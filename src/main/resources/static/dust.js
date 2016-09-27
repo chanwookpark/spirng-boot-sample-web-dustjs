@@ -1,4 +1,4 @@
-var templates = {};
+var jsonMapper = new com.fasterxml.jackson.databind.ObjectMapper();
 
 /**
  * Rendering template...
@@ -8,27 +8,25 @@ var templates = {};
  * @param url URL for Template HTML file
  * @returns {String}
  */
-function render(template, model, url) {
-    // Compile template if needs
-    if (templates[url] === undefined) {
-        var compiled = dust.compile(template, url); // compile
-        dust.loadSource(compiled); // load
-    }
+function render(src, model, url) {
+    var compiled = dust.compile(src); // compile - 운영에서는 pre-compile 필요오~
+    var template = dust.loadSource(compiled); // load
 
-    // Java object to JavaScript object
-    var jsonObject = convertToJsonObject(model);
+    var jsArray = convertToJsArray(model);
+    var json = jsonMapper.writeValueAsString(jsArray);
 
     console.log(
-        "'" + url + "' template is ready to rendering!\n" +
-        "=============================================================\n"
-        + template + "\n"
-        + model + "\n"
-        + "=============================================================");
+        "##################################################\n" +
+        "화면 렌더링 로그" +
+        "\n1. 템플릿 파일 경로(URL) : " + url +
+        "\n2. 데이터(JSON) : " + json +
+        "\n3. 화면코드(HTML) : \n" + src +
+        "\n4. 렌더링코드(compiled HTML): \n" + template +
+        "\n##################################################"
+    );
 
-    // Render
-    // Dust is basically asynchronously then this code has potentially issue with synchronous..
     var res;
-    dust.render(url, jsonObject, function (err, data) {
+    dust.render(template, JSON.parse(json), function (err, data) {
         if (err) {
             throw new Error(err);
         } else {
@@ -39,14 +37,16 @@ function render(template, model, url) {
 }
 
 // thanks to https://github.com/sdeleuze/spring-react-isomorphic/blob/master/src/main/resources/static/render.js
-function convertToJsonObject(model) {
-    var o = {};
-    for (var k in model) {
-        if (model[k] instanceof Java.type("java.lang.Iterable")) {
-            o[k] = Java.from(model[k]);
+function convertToJsArray(javaObject) {
+    var objectArray = {};
+    for (var k in javaObject) {
+        if (javaObject[k] instanceof Java.type("java.lang.Iterable")) {
+            objectArray[k] = Java.from(javaObject[k]);
+        } else if (javaObject[k] instanceof Java.type("org.springframework.validation.Errors")) {
+            objectArray[k] = "";
         } else {
-            o[k] = model[k];
+            objectArray[k] = javaObject[k];
         }
     }
-    return o;
+    return objectArray;
 }
